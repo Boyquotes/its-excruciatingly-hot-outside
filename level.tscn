@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/dpcomic.regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://clock.gd" type="Script" id=2]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://obstacle/obstacle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://goal/goal.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[node name="level" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="clock" type="Label" parent="CanvasLayer"]
+margin_left = -385.24
+margin_top = -280.747
+margin_right = -134.24
+margin_bottom = -184.747
+custom_fonts/font = SubResource( 1 )
+text = "00:00:00"
+script = ExtResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+max_speed = 1000.0
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+current = true
+drag_margin_left = 0.5
+drag_margin_top = 0.5
+drag_margin_right = 0.5
+drag_margin_bottom = 0.5
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="obstacles" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="obstacle" parent="obstacles" instance=ExtResource( 4 )]
+
+[node name="obstacle2" parent="obstacles" instance=ExtResource( 4 )]
+position = Vector2( 91, -382 )
+
+[node name="obstacle3" parent="obstacles" instance=ExtResource( 4 )]
+position = Vector2( -259, -661 )
+
+[node name="obstacle4" parent="obstacles" instance=ExtResource( 4 )]
+position = Vector2( -74, -1093 )
+
+[node name="obstacle5" parent="obstacles" instance=ExtResource( 4 )]
+position = Vector2( 58, -786 )
+
+[node name="goal" parent="." instance=ExtResource( 5 )]
+
+[connection signal="goal_entered" from="goal" to="player" method="on_goal_entered"]
