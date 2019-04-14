@@ -1,4 +1,4 @@
-# its-excrutiatingly-host-outside
+# its-excrutiatingly-hot-outside
 My first attempt at using Godot 3.1
 
 A top-down scroller time-attack racing game. 
